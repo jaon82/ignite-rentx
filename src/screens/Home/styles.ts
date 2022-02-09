@@ -16,8 +16,8 @@ export const Header = styled.View`
 
 export const HeaderContent = styled.View`
   flex-direction: row;
-  justify-content: flex-end;
   justify-content: space-between;
+  align-items: flex-end;
 `;
 
 export const TotalCars = styled.Text`
