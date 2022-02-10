@@ -12,8 +12,10 @@ import {
 } from '@expo-google-fonts/archivo';
 import AppLoading from 'expo-app-loading';
 
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import theme from './src/global/styles/theme';
 import Home from './src/screens/Home';
+import CarDetails from './src/screens/CarDetails';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -30,7 +32,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Home />
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <CarDetails />
+      </GestureHandlerRootView>
     </ThemeProvider>
   );
 }
