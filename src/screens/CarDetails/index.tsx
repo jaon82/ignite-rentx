@@ -19,12 +19,14 @@ import {
   Content,
   Description,
   Details,
+  Footer,
   Header,
   Name,
   Period,
   Price,
   Rent,
 } from './styles';
+import Button from '../../components/Button';
 
 export default function CarDetails() {
   return (
@@ -60,6 +62,9 @@ export default function CarDetails() {
         </Acessories>
         <About>about</About>
       </Content>
+      <Footer>
+        <Button title="Confirmar" />
+      </Footer>
     </Container>
   );
 }
