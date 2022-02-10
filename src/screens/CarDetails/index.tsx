@@ -2,7 +2,20 @@ import React from 'react';
 import BackButton from '../../components/BackButton';
 import ImagesSlider from '../../components/ImagesSlider';
 
-import { CarImages, Container, Header } from './styles';
+import {
+  About,
+  Brand,
+  CarImages,
+  Container,
+  Content,
+  Description,
+  Details,
+  Header,
+  Name,
+  Period,
+  Price,
+  Rent,
+} from './styles';
 
 export default function CarDetails() {
   return (
@@ -17,6 +30,19 @@ export default function CarDetails() {
           ]}
         />
       </CarImages>
+      <Content>
+        <Details>
+          <Description>
+            <Brand>La</Brand>
+            <Name>a</Name>
+          </Description>
+          <Rent>
+            <Period>Aod</Period>
+            <Price>1</Price>
+          </Rent>
+        </Details>
+        <About>about</About>
+      </Content>
     </Container>
   );
 }
