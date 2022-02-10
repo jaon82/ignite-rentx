@@ -68,7 +68,11 @@
     "import/no-duplicates": "off",
     "global-require": "off",
     "no-underscore-dangle": ["error", { "allow": ["_id"] }],
-    "react/require-default-props": ["error", {"ignoreFunctionalComponents": true }]
+    "react/require-default-props": ["error", {"ignoreFunctionalComponents": true }],
+    "react/jsx-no-bind": ["error", {
+      "allowArrowFunctions": true,
+      "allowFunctions": true
+    }]
   },
   "settings": {
     "import/resolver": {
