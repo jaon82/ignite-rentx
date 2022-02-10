@@ -1,5 +1,5 @@
 import React from 'react';
-import { StatusBar, Text } from 'react-native';
+import { StatusBar } from 'react-native';
 import { useTheme } from 'styled-components';
 import BackButton from '../../components/BackButton';
 
@@ -16,6 +16,7 @@ import {
   Title,
 } from './styles';
 import Button from '../../components/Button';
+import Calendar from '../../components/Calendar';
 
 export default function Scheduling() {
   const theme = useTheme();
@@ -43,7 +44,9 @@ export default function Scheduling() {
           </DateInfo>
         </RentalPeriod>
       </Header>
-      <Content />
+      <Content>
+        <Calendar />
+      </Content>
       <Footer>
         <Button title="Confirmar" />
       </Footer>
