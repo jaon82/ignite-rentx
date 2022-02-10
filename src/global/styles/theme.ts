@@ -15,7 +15,7 @@ export default {
   },
   fonts: {
     primary_400: 'InterRegular',
-    primary_4500: 'InterMedium',
+    primary_500: 'InterMedium',
     secondary_400: 'ArchivoRegular',
     secondary_500: 'ArchivoMedium',
     secondary_600: 'ArchivoBold',
