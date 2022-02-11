@@ -46,15 +46,18 @@ import Button from '../../components/Button';
 
 export default function SchedulingDetails() {
   const theme = useTheme();
-  const { navigate }: NavigationProp<ParamListBase> = useNavigation();
+  const { navigate, goBack }: NavigationProp<ParamListBase> = useNavigation();
   function handleConfirm() {
     navigate('SchedulingComplete');
+  }
+  function handleBack() {
+    goBack();
   }
 
   return (
     <Container>
       <Header>
-        <BackButton onPress={() => {}} />
+        <BackButton onPress={handleBack} />
       </Header>
       <CarImages>
         <ImagesSlider
