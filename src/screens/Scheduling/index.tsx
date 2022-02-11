@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StatusBar } from 'react-native';
 import { useTheme } from 'styled-components';
 import {
@@ -21,13 +21,39 @@ import {
   Title,
 } from './styles';
 import Button from '../../components/Button';
-import Calendar from '../../components/Calendar';
+import {
+  Calendar,
+  DayProps,
+  generateInterval,
+  MarkedDateProps,
+} from '../../components/Calendar';
 
 export default function Scheduling() {
   const theme = useTheme();
-  const { navigate }: NavigationProp<ParamListBase> = useNavigation();
+  const [lastSelectedDate, setLastSelectedDate] = useState<DayProps>(
+    {} as DayProps,
+  );
+  const [markedDates, setMarkedDates] = useState<MarkedDateProps>(
+    {} as MarkedDateProps,
+  );
+  const { navigate, goBack }: NavigationProp<ParamListBase> = useNavigation();
   function handleConfirmRental() {
     navigate('SchedulingDetails');
+  }
+  function handleBack() {
+    goBack();
+  }
+  function handleChangeDate(date: DayProps) {
+    let start = !lastSelectedDate.timestamp ? date : lastSelectedDate;
+    let end = date;
+    if (start.timestamp > end.timestamp) {
+      const newEnd = start;
+      start = end;
+      end = newEnd;
+    }
+    setLastSelectedDate(end);
+    const interval = generateInterval(start, end);
+    setMarkedDates(interval);
   }
 
   return (
@@ -38,7 +64,7 @@ export default function Scheduling() {
           backgroundColor="transparent"
           translucent
         />
-        <BackButton onPress={() => {}} color={theme.colors.shape} />
+        <BackButton onPress={handleBack} color={theme.colors.shape} />
         <Title>
           Escolha uma{'\n'}data de início e{'\n'}fim do aluguel
         </Title>
@@ -55,7 +81,7 @@ export default function Scheduling() {
         </RentalPeriod>
       </Header>
       <Content>
-        <Calendar />
+        <Calendar markedDates={markedDates} onDayPress={handleChangeDate} />
       </Content>
       <Footer>
         <Button title="Confirmar" onPress={handleConfirmRental} />
