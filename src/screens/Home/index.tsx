@@ -18,8 +18,8 @@ export default function Home() {
   const { navigate }: NavigationProp<ParamListBase> = useNavigation();
   const [cars, setCars] = useState<CarDTO[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  function handleCarDetails() {
-    navigate('CarDetails');
+  function handleCarDetails(car: CarDTO) {
+    navigate('CarDetails', { car });
   }
   useEffect(() => {
     async function fetchCars() {
@@ -54,7 +54,7 @@ export default function Home() {
           data={cars}
           keyExtractor={item => item.id}
           renderItem={({ item }) => (
-            <Car data={item} onPress={handleCarDetails} />
+            <Car data={item} onPress={() => handleCarDetails(item)} />
           )}
         />
       )}

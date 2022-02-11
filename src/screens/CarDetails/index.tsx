@@ -3,6 +3,7 @@ import {
   NavigationProp,
   ParamListBase,
   useNavigation,
+  useRoute,
 } from '@react-navigation/native';
 
 import BackButton from '../../components/BackButton';
@@ -32,45 +33,51 @@ import {
   Rent,
 } from './styles';
 import Button from '../../components/Button';
+import CarDTO from '../../dtos/CarDTO';
 
+interface Params {
+  car: CarDTO;
+}
 export default function CarDetails() {
-  const { navigate }: NavigationProp<ParamListBase> = useNavigation();
+  const { navigate, goBack }: NavigationProp<ParamListBase> = useNavigation();
+  const route = useRoute();
+  const { car } = route.params as Params;
   function handleConfirmRental() {
     navigate('Scheduling');
+  }
+  function handleBack() {
+    goBack();
   }
 
   return (
     <Container>
       <Header>
-        <BackButton onPress={() => {}} />
+        <BackButton onPress={handleBack} />
       </Header>
       <CarImages>
-        <ImagesSlider
-          imagesUrl={[
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYgIjNZsopctbwuHDcAKkyXHfV3Lx5vsYt2A&usqp=CAU',
-          ]}
-        />
+        <ImagesSlider imagesUrl={car.photos} />
       </CarImages>
       <Content>
         <Details>
           <Description>
-            <Brand>La</Brand>
-            <Name>a</Name>
+            <Brand>{car.brand}</Brand>
+            <Name>{car.name}</Name>
           </Description>
           <Rent>
-            <Period>Aod</Period>
-            <Price>1</Price>
+            <Period>{car.rent.period}</Period>
+            <Price>R$ {car.rent.price}</Price>
           </Rent>
         </Details>
         <Acessories>
-          <Acessory name="380Km/h" icon={SpeedSvg} />
-          <Acessory name="3.2s" icon={AccelerationSvg} />
-          <Acessory name="800 MP" icon={ForceSvg} />
-          <Acessory name="Gasolina" icon={GasolineSvg} />
-          <Acessory name="Auto" icon={ExchangeSvg} />
-          <Acessory name="2 pessoas" icon={PeopleSvg} />
+          {car.accessories.map(acessory => (
+            <Acessory
+              key={acessory.type}
+              name={acessory.name}
+              icon={SpeedSvg}
+            />
+          ))}
         </Acessories>
-        <About>about</About>
+        <About>{car.about}</About>
       </Content>
       <Footer>
         <Button
