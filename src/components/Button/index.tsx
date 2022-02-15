@@ -1,4 +1,5 @@
 import React from 'react';
+import { ActivityIndicator } from 'react-native';
 import { BorderlessButtonProps } from 'react-native-gesture-handler';
 import { useTheme } from 'styled-components';
 
@@ -8,24 +9,30 @@ interface Props extends BorderlessButtonProps {
   title: string;
   color?: string;
   enabled?: boolean;
+  loading?: boolean;
 }
 export default function Button({
   title,
   color,
   enabled = true,
+  loading = false,
   ...rest
 }: Props) {
   const theme = useTheme();
   return (
     <Container
       color={color ?? theme.colors.main}
-      enabled={enabled}
+      enabled={enabled && !loading}
       style={{
-        opacity: enabled ? 1 : 0.5,
+        opacity: enabled && !loading ? 1 : 0.5,
       }}
       {...rest}
     >
-      <Title>{title}</Title>
+      {loading ? (
+        <ActivityIndicator color={theme.colors.shape} />
+      ) : (
+        <Title>{title}</Title>
+      )}
     </Container>
   );
 }
