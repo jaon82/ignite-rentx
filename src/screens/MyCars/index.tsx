@@ -27,7 +27,7 @@ import {
   SubTitle,
   Title,
 } from './styles';
-import Load from '../../components/Load';
+import LoadAnimation from '../../components/LoadAnimation';
 
 interface CarProps {
   id: string;
@@ -73,7 +73,7 @@ export default function MyCars() {
         <SubTitle>Conforto, segurança e praticidade</SubTitle>
       </Header>
       {isLoading ? (
-        <Load />
+        <LoadAnimation />
       ) : (
         <Content>
           <Appointments>
