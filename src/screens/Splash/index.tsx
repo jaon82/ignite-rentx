@@ -1,17 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import Animated, {
   Extrapolate,
   interpolate,
+  runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import {
+  NavigationProp,
+  ParamListBase,
+  useNavigation,
+} from '@react-navigation/native';
 
 import BrandSvg from '../../assets/brand.svg';
 import LogoSvg from '../../assets/logo.svg';
 import { Container, Title } from './styles';
 
 export default function Splash() {
+  const { navigate }: NavigationProp<ParamListBase> = useNavigation();
   const splashAnimation = useSharedValue(0);
   const brandStyle = useAnimatedStyle(() => {
     return {
@@ -43,9 +50,14 @@ export default function Splash() {
       ],
     };
   });
+  const startApp = useCallback(() => {
+    navigate('Home');
+  }, [navigate]);
   useEffect(() => {
-    splashAnimation.value = withTiming(50, { duration: 1000 });
-  });
+    splashAnimation.value = withTiming(50, { duration: 1000 }, () => {
+      ('worklet', runOnJS)(startApp)();
+    });
+  }, [splashAnimation, startApp]);
   return (
     <Container>
       <Animated.View style={[brandStyle, { position: 'absolute' }]}>
