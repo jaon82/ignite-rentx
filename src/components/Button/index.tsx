@@ -1,11 +1,11 @@
 import React from 'react';
 import { ActivityIndicator } from 'react-native';
-import { BorderlessButtonProps } from 'react-native-gesture-handler';
+import { RectButtonProps } from 'react-native-gesture-handler';
 import { useTheme } from 'styled-components';
 
 import { Container, Title } from './styles';
 
-interface Props extends BorderlessButtonProps {
+interface Props extends RectButtonProps {
   title: string;
   color?: string;
   enabled?: boolean;
