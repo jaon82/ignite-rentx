@@ -1,22 +1,23 @@
-import React, { useState } from 'react';
 import {
-  Alert,
-  Keyboard,
-  KeyboardAvoidingView,
-  StatusBar,
-  TouchableWithoutFeedback,
-} from 'react-native';
+  NavigationProp,
+  ParamListBase,
+  useNavigation,
+} from '@react-navigation/native';
+import React, { useState } from 'react';
+import { Alert, Keyboard, KeyboardAvoidingView, StatusBar } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import * as Yup from 'yup';
+
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import PasswordInput from '../../components/PasswordInput';
 import theme from '../../global/styles/theme';
-
 import { Footer, Container, Header, SubTitle, Title, Form } from './styles';
 
 export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { navigate }: NavigationProp<ParamListBase> = useNavigation();
 
   async function handleSignIn() {
     try {
@@ -37,6 +38,10 @@ export default function SignIn() {
         'Ocorreu um erro ao fazer login, verifique as credenciais',
       );
     }
+  }
+
+  function handleNewAccount() {
+    navigate('SignUpFirstStep');
   }
 
   return (
@@ -74,14 +79,13 @@ export default function SignIn() {
           <Footer>
             <Button
               title="Login"
-              onPress={() => {}}
+              onPress={handleSignIn}
               enabled={false}
               loading={false}
             />
             <Button
-              title="Login"
-              onPress={handleSignIn}
-              enabled={false}
+              title="Criar conta gratuita"
+              onPress={handleNewAccount}
               loading={false}
               color={theme.colors.background_secondary}
               light
