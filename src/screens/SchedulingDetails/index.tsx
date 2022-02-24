@@ -88,7 +88,7 @@ export default function SchedulingDetails() {
         navigate('Confirmation', {
           nextScreenRoute: 'Home',
           title: 'Carro alugado!',
-          message: `Agora você só precisa ir{'\n'} até a concessionária da RENTX{'\n'}{' '}pegar o seu automóvel.`,
+          message: `Agora você só precisa ir\n até a concessionária da RENTX\npegar o seu automóvel.`,
         }),
       )
       .catch(() => Alert.alert('Não foi possível confirmar o agendamento'))
