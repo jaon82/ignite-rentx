@@ -83,7 +83,7 @@ export default function SignIn() {
             <Button
               title="Login"
               onPress={handleSignIn}
-              enabled={false}
+              enabled
               loading={false}
             />
             <Button

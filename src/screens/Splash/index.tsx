@@ -15,7 +15,7 @@ import {
 
 import BrandSvg from '../../assets/brand.svg';
 import LogoSvg from '../../assets/logo.svg';
-import { Container, Title } from './styles';
+import { Container } from './styles';
 
 export default function Splash() {
   const { navigate }: NavigationProp<ParamListBase> = useNavigation();
@@ -51,7 +51,7 @@ export default function Splash() {
     };
   });
   const startApp = useCallback(() => {
-    navigate('Home');
+    navigate('SignIn');
   }, [navigate]);
   useEffect(() => {
     splashAnimation.value = withTiming(50, { duration: 1000 }, () => {
