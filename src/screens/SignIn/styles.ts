@@ -15,14 +15,14 @@ export const Header = styled.View`
 export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.secondary_600};
   color: ${({ theme }) => theme.colors.title};
-  font-size: ${RFValue(40)};
+  font-size: ${RFValue(40)}px;
 `;
 
 export const SubTitle = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary_400};
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${RFValue(15)};
-  line-height: ${RFValue(25)};
+  font-size: ${RFValue(15)}px;
+  line-height: ${RFValue(25)}px;
 `;
 
 export const Form = styled.View`
