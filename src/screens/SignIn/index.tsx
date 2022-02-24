@@ -12,12 +12,14 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import PasswordInput from '../../components/PasswordInput';
 import theme from '../../global/styles/theme';
+import { useAuth } from '../../hooks/auth';
 import { Footer, Container, Header, SubTitle, Title, Form } from './styles';
 
 export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { navigate }: NavigationProp<ParamListBase> = useNavigation();
+  const { signIn } = useAuth();
 
   async function handleSignIn() {
     try {
@@ -29,6 +31,7 @@ export default function SignIn() {
       });
 
       await schema.validate({ email, password });
+      signIn({ email, password });
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         return Alert.alert('Erro de validação', error.message);

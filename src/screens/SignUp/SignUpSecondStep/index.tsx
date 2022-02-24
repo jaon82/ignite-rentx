@@ -67,7 +67,7 @@ export default function SignUpSecondStep() {
         });
       })
       .catch(() => {
-        Alert.alert('Opa', 'Não foi possível cadastrar');
+        Alert.alert('Erro', 'Não foi possível cadastrar');
       });
   }
 
